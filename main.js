@@ -2,6 +2,8 @@ import {loadDecks, saveDecks, createDeck, validateDeck, STORAGE_KEY} from './sto
 import {renderDashboard} from './dashboard.js';
 import {renderEditor} from './editor.js';
 
+import {loadOnline} from './online.js';
+
 const root = document.getElementById('app');
 const alertBox = document.getElementById('save-alert');
 let decks = [], savedDecks = [], cleanup = () => {}, toastTimer;
@@ -142,6 +144,24 @@ function navigate(hash) { if (location.hash === hash) render(); else location.ha
 function openDeck(id) { navigate(`#editor/${encodeURIComponent(id)}`); }
 function render() {
   cleanup(); root.innerHTML = '';
+  if (location.hash.startsWith('#online/')) {
+    const controller = new AbortController();
+    cleanup = () => controller.abort();
+    const panel = document.createElement('section');
+    panel.className = 'online-loading';
+    const message = document.createElement('p');
+    message.setAttribute('role','status');
+    message.textContent = 'Loading online presentation…';
+    const back = document.createElement('a');
+    back.href = '#dashboard'; back.textContent = 'Back to presentations';
+    panel.append(message,back); root.append(panel);
+    loadOnline(location.hash.slice(8), controller.signal).then(online => {
+      if (controller.signal.aborted) return;
+      document.title = online.title + ' — Dash Presentation';
+      cleanup = renderEditor({root,deck:online,onBack:()=>navigate('#dashboard'),onToast:toast,onUpdate:()=>false,onlineView:true});
+    }).catch(error => { if (!controller.signal.aborted) message.textContent = error.message; });
+    return;
+  }
   const deck = decks.find(d => d.id === activeId());
   if (deck) {
     document.title = `${deck.title} — Dash Presentation`;
