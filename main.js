@@ -1,4 +1,4 @@
-import {loadDecks, saveDecks, createDeck, validateDeck, STORAGE_KEY} from './store.js';
+import {loadDecks, saveDecks, createDeck, createId, validateDeck, STORAGE_KEY} from './store.js';
 import {renderDashboard} from './dashboard.js';
 import {renderEditor} from './editor.js';
 import {loadOnline} from './online.js';
@@ -126,7 +126,7 @@ function keepEditedCopies() {
     const previous = new Map(savedDecks.map(d => [d.id, serialized(d)]));
     const changed = decks.filter(d => previous.get(d.id) !== serialized(d));
     const now = new Date().toISOString();
-    const recovered = changed.map(d => ({...copy(d), id:crypto.randomUUID(),
+    const recovered = changed.map(d => ({...copy(d), id:createId(),
       title:`${d.title.slice(0,157)} (recovered copy)`, createdAt:now, updatedAt:now}));
     // Recovery adds distinct copies; it never restores deleted IDs or reapplies stale deletions.
     if (readSnapshot() !== latest.raw) throw new Error('The other tab changed again. Try keeping your edited copies once more.');
@@ -182,7 +182,7 @@ document.getElementById('import-file').addEventListener('change', async event =>
     if (file.size > 2_000_000) throw new Error('Please choose a JSON file smaller than 2 MB.');
     const raw = JSON.parse(await file.text());
     const imported = validateDeck(raw.deck ?? raw);
-    imported.id = crypto.randomUUID();
+    imported.id = createId();
     imported.createdAt = new Date().toISOString(); imported.updatedAt = imported.createdAt;
     const saved = persist([imported,...decks]);
     toast(saved ? 'Presentation imported and saved' : 'Presentation imported into this tab');

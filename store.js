@@ -64,8 +64,15 @@ const templateContent = {
   },
 };
 
-function uid() {
-  return globalThis.crypto?.randomUUID?.() ?? `o-${Date.now().toString(36)}-${Math.random().toString(36).slice(2)}-${Math.random().toString(36).slice(2)}`;
+let fallbackIdSequence = 0;
+export function createId(cryptoProvider = globalThis.crypto) {
+  if (typeof cryptoProvider?.randomUUID === 'function') return cryptoProvider.randomUUID();
+  if (typeof cryptoProvider?.getRandomValues === 'function') {
+    const values = cryptoProvider.getRandomValues(new Uint32Array(4));
+    return `o-${Array.from(values, value => value.toString(36)).join('-')}`;
+  }
+  fallbackIdSequence = (fallbackIdSequence + 1) % 0x7fffffff;
+  return `o-${Date.now().toString(36)}-${fallbackIdSequence.toString(36)}-${Math.random().toString(36).slice(2)}`;
 }
 function cleanText(value, field, max, fallback = '') {
   if (value === undefined || value === null) return fallback;
@@ -163,19 +170,19 @@ export function createDeck(templateId = 'blank', title) {
   if (content) {
     const points = [[110, 400], [610, 330], [1110, 440]];
     content.topics.forEach((topic, i) => {
-      const id = uid();
+      const id = createId();
       const [x, y] = points[i];
       nodes.push({ id, title: topic[0], body: topic[1], notes: topic[2], x, y, w: 400, h: 280, parentId: null, color: colors[i] });
       path.push(id);
       for (let childIndex = 0; childIndex < 2; childIndex++) {
-        const childId = uid();
+        const childId = createId();
         nodes.push({ id: childId, title: topic[3 + childIndex], body: '', notes: `Add your own example for “${topic[3 + childIndex]}”.`, x: x + 28 + childIndex * 185, y: y + 165, w: 145, h: 95, parentId: id, color: '#ffffff' });
         path.push(childId);
       }
     });
   }
   return validateDeck({
-    id: uid(), title: title ?? content?.title ?? 'Untitled presentation',
+    id: createId(), title: title ?? content?.title ?? 'Untitled presentation',
     subtitle: content?.subtitle ?? 'A little space for your next big idea.',
     theme: template.theme, starred: false, createdAt: now, updatedAt: now, nodes, path,
   });

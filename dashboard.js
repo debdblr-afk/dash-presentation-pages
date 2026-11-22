@@ -1,4 +1,4 @@
-import { TEMPLATES } from './store.js';
+import { createId, TEMPLATES } from './store.js';
 
 const icons = {
   plus: '<path d="M12 5v14M5 12h14"/>',
@@ -45,9 +45,8 @@ export function thumbnail(deck, className = '') {
 }
 function cloneDeck(deck) {
   const copy = JSON.parse(JSON.stringify(deck));
-  const uid = () => typeof crypto.randomUUID === 'function' ? crypto.randomUUID() : `${Date.now()}-${Math.random().toString(36).slice(2)}`;
-  const ids = new Map(copy.nodes.map(n => [n.id, uid()]));
-  copy.id = uid(); copy.title = `${copy.title.slice(0,153)} (copy)`; copy.starred = false;
+  const ids = new Map(copy.nodes.map(n => [n.id, createId()]));
+  copy.id = createId(); copy.title = `${copy.title.slice(0,153)} (copy)`; copy.starred = false;
   copy.createdAt = copy.updatedAt = new Date().toISOString();
   copy.nodes = copy.nodes.map(n => ({...n,id:ids.get(n.id),parentId:n.parentId ? ids.get(n.parentId) || null : null}));
   copy.path = copy.path.map(id => ids.get(id)).filter(Boolean);
