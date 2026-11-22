@@ -22,7 +22,7 @@ const icons = {
 const icon = (name, cls='') => `<svg class="icon ${cls}" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">${icons[name] || icons.grid}</svg>`;
 const esc = (value) => String(value ?? '').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 const logo = '<svg class="orbit-logo" viewBox="0 0 40 40" fill="none" aria-hidden="true"><circle cx="20" cy="20" r="7" stroke="currentColor" stroke-width="2.2"/><ellipse cx="20" cy="20" rx="18" ry="11" transform="rotate(-40 20 20)" stroke="currentColor" stroke-width="2"/><circle cx="32" cy="10" r="3.5" fill="currentColor"/></svg>';
-const themeId = value => ['forest','peach','ocean','lilac'].includes(value) ? value : 'forest';
+const themeId = value => ['forest','peach','ocean','lilac','circles'].includes(value) ? value : 'forest';
 function timeAgo(value) {
   const age = Math.max(0, Date.now() - new Date(value).getTime());
   if (!Number.isFinite(age)) return 'Saved locally';

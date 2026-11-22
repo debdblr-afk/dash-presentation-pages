@@ -7,9 +7,22 @@
 @media(max-width:650px){.editor-header{height:66px;padding:0 12px;gap:11px}.editor-brand>span,.header-divider,.export-button span,.editor-header .btn-primary span{display:none}.editor-header-actions{gap:5px}.editor-header .btn{padding:0 10px}.editor-document{gap:5px}.deck-title{font-size:12px;max-width:190px}.save-state{font-size:8px}.editor-toolbar{height:50px;padding:0 8px;gap:3px}.toolbar-start{width:auto;gap:2px}.editing-label,.toolbar-divider,.toolbar-end>[data-action="help"]{display:none}.toolbar-tools{justify-content:center;gap:1px;margin:0}.editor-toolbar .btn{font-size:10px;gap:5px;padding:5px 8px}.mobile-path,.path-panel .panel-close{display:inline-flex!important}.path-panel{display:none;position:absolute;left:0;top:0;bottom:0;width:230px;box-shadow:12px 0 40px #17291e20;z-index:5}.path-open .path-panel{display:flex}.zoom-control{bottom:18px;right:50%;transform:translateX(50%)}.canvas-world{border-radius:0}.inspector-panel{width:260px}.present-top{left:14px!important;right:14px!important;top:14px!important}.present-top .btn{font-size:9px;padding:7px 9px;gap:5px;min-height:34px}.present-top kbd,.present-name{display:none}.present-controls{bottom:22px!important;gap:8px!important}.present-progress{min-width:75px;font-size:10px}.is-presenting .present-notes-toggle{bottom:90px;right:18px;font-size:10px}.present-notes{bottom:125px;right:18px}.canvas-empty{width:260px;padding:20px}.editor-dialog{padding:24px}.shortcuts-dialog dl>div{font-size:10px}}
 @media(prefers-reduced-motion:reduce){.canvas-world.animate-camera{transition:none}#toast{transition:none}}
 
-.online-dialog { max-width: min(540px, 94vw); max-height: 90vh; overflow: auto; }
-.online-dialog form { float: right; }
-.online-dialog p, .online-dialog label { display: block; margin: 1rem 0 .5rem; line-height: 1.45; }
-.online-dialog input, .online-dialog textarea { display: block; width: 100%; margin: .4rem 0; padding: .55rem; font: inherit; border: 1px solid #8ba29a; border-radius: 6px; }
-.online-dialog a:not([hidden]) { display: inline-block; }
-.online-loading { padding: 8vh 8vw; font-size: 18px; }
+/* Circular chapters and detail bubbles occupy square bounds on the zoom canvas. */
+.circle-theme .canvas-world { background:transparent; box-shadow:none }
+.circle-theme .canvas-viewport { background-color:#101f35; background-image:radial-gradient(#52677e .8px,transparent .8px) }
+.circle-theme .topic,.circle-theme .topic.subtopic { border-radius:50%; box-sizing:border-box; text-align:center; overflow:hidden; container-type:size; padding:0; border:2px solid #83b5c0; color:#fff; background:color-mix(in srgb,var(--node-color) 64%,#0c203a) }
+.circle-theme .topic .topic-topline { margin:12% auto 2%; width:55%; justify-content:center }
+.circle-theme .topic .topic-orbit,.circle-theme .subtopic-arrow { display:none }
+.circle-theme .topic-number { color:#d5eeed; font-size:3cqw }
+.circle-theme .topic h2 { font:500 7cqw/1.08 Georgia,serif; margin:2% auto; width:73%; max-height:none; }
+.circle-theme .topic p { font-size:3.6cqw; line-height:1.35; opacity:1; margin:auto; width:69%; max-width:none; -webkit-line-clamp:5 }
+.circle-theme .topic.subtopic { display:flex; flex-direction:column; justify-content:center; background:#e5f1ee; color:#162d40 }
+.circle-theme .topic.subtopic h2 { margin:0 auto 3%; font:600 8cqw/1.13 system-ui,sans-serif; width:75%; max-height:none }
+.circle-theme .topic.subtopic p { margin:0 auto; font-size:5.9cqw; line-height:1.3; width:74%; -webkit-line-clamp:6 }
+.circle-theme .overview-heading { max-width:1800px }
+.circle-theme .overview-heading p { opacity:1 }
+.circle-theme.is-presenting .present-top { background:#101f35e8; border-radius:10px; padding:6px 10px }
+.circle-theme.is-presenting .canvas-world:has(.subtopic.selected) .topic:not(.selected),
+.circle-theme.is-presenting .canvas-world:has(.subtopic.selected) .overview-heading,
+.circle-theme.is-presenting .canvas-world:has(.subtopic.selected) .canvas-connections { opacity:0; pointer-events:none }
+.circle-theme.is-presenting .present-top .btn { color:#162d40; background:#e5f1ee }

@@ -1,6 +1,7 @@
 /** Dash Presentation's portable document model and browser-local repository. */
 export const STORAGE_KEY = 'orbit-studio.documents.v1';
 export const THEMES = Object.freeze([
+  { id: 'circles', name: 'Orbit circles', bg: '#101f35', ink: '#f5f9ff', accent: '#9ce0e0', soft: '#234c63' },
   { id: 'forest', name: 'Forest', bg: '#eff3e9', ink: '#183e32', accent: '#245c48', soft: '#d8eea3' },
   { id: 'peach', name: 'Apricot', bg: '#fff0e6', ink: '#643e31', accent: '#a84d2f', soft: '#ffcba7' },
   { id: 'ocean', name: 'Ocean', bg: '#eaf1f4', ink: '#243f51', accent: '#365c76', soft: '#bfdde7' },
