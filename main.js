@@ -1,7 +1,7 @@
-import {loadDecks, saveDecks, createDeck, createId, validateDeck, STORAGE_KEY} from './store.js';
-import {renderDashboard} from './dashboard.js';
-import {renderEditor} from './editor.js';
-import {loadOnline} from './online.js';
+import {loadDecks, saveDecks, createDeck, createId, validateDeck, STORAGE_KEY} from './store.js?v=20261122-3';
+import {renderDashboard} from './dashboard.js?v=20261122-3';
+import {renderEditor} from './editor.js?v=20261122-3';
+import {loadOnline} from './online.js?v=20261122-3';
 
 const root = document.getElementById('app');
 const alertBox = document.getElementById('save-alert');

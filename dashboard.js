@@ -1,4 +1,4 @@
-import { createId, TEMPLATES } from './store.js';
+import { createId, TEMPLATES } from './store.js?v=20261122-3';
 
 const icons = {
   plus: '<path d="M12 5v14M5 12h14"/>',

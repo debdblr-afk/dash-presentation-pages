@@ -1,6 +1,6 @@
-import {createId, THEMES} from './store.js';
-import {deleteFile, mediaObjectUrl, session, signIn, signOut, signUp, storageUsage, uploadFile as uploadCloudFile} from './cloud.js';
-import {onlineDialog} from './online.js';
+import {createId, THEMES} from './store.js?v=20261122-3';
+import {deleteFile, mediaObjectUrl, session, signIn, signOut, signUp, storageUsage, uploadFile as uploadCloudFile} from './cloud.js?v=20261122-3';
+import {onlineDialog} from './online.js?v=20261122-3';
 const esc=value=>String(value??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 const paths={back:'M15 18l-6-6 6-6',next:'M9 18l6-6-6-6',plus:'M12 5v14M5 12h14',minus:'M5 12h14',play:'m8 5 11 7-11 7Z',close:'M6 6l12 12M18 6 6 18',undo:'M9 5 4 10l5 5M4 10h9a6 6 0 0 1 0 12',redo:'m15 5 5 5-5 5M20 10h-9a6 6 0 0 0 0 12',download:'M12 3v12m-5-5 5 5 5-5M5 16v5h14v-5',fit:'M9 4H4v5m11-5h5v5M4 15v5h5m11-5v5h-5',layers:'m3 7 9-4 9 4-9 4Zm0 5 9 4 9-4M3 17l9 4 9-4',settings:'M4 6h16M4 12h16M4 18h16M8 3v6m8 0v6m-7 0v6',up:'m6 15 6-6 6 6',down:'m6 9 6 6 6-6',trash:'M3 6h18M9 6V3h6v3M6 6l1 15h10l1-15M10 10v7m4-7v7',copy:'M9 9h12v12H9zM15 9V3H3v12h6',note:'M4 3h16v18H4zM8 7h8M8 11h8M8 15h5',check:'m5 12 4 4L19 6',help:'M9 8a3 3 0 0 1 6 0c0 2-3 2-3 4M12 16v.1',home:'m3 10 9-7 9 7M6 8v13h12V8M10 21v-7h4v7'};
 const icon=(name,size=18)=>`<svg width="${size}" height="${size}" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="${paths[name]||paths.plus}"/></svg>`;

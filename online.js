@@ -1,4 +1,4 @@
-import {validateDeck} from './store.js';
+import {validateDeck} from './store.js?v=20261122-3';
 
 const filename = 'presentation.orbit.json';
 const gistId = /^[0-9a-f]{20,40}$/i;
