@@ -85,6 +85,16 @@ function isoDate(value, fallback) {
   if (typeof value !== 'string' || value.length > 50 || !Number.isFinite(Date.parse(value))) throw new Error('Presentation dates are invalid.');
   return new Date(value).toISOString();
 }
+function mediaAsset(value) {
+  if (value === undefined || value === null) return null;
+  if (typeof value !== 'object' || Array.isArray(value)) throw new Error('Topic media is invalid.');
+  return {
+    id: identifier(value.id, 'Media ID'),
+    fileName: cleanText(value.fileName, 'Media file name', 255, 'Uploaded file'),
+    mimeType: cleanText(value.mimeType, 'Media type', 120, 'application/octet-stream'),
+    byteSize: finiteNumber(value.byteSize, 'Media size', 1, 104857600),
+  };
+}
 
 /** Validate and copy only known fields; imported strings are rendered as text by the UI. */
 export function validateDeck(data) {
@@ -113,6 +123,7 @@ export function validateDeck(data) {
       h: finiteNumber(node.h, 'Topic height', 40, 5000),
       parentId: node.parentId == null ? null : identifier(node.parentId, 'Parent topic ID'),
       color: color.toLowerCase(),
+      ...(node.media == null ? {} : { media: mediaAsset(node.media) }),
     };
   });
   const nodeMap = new Map(nodes.map(n => [n.id, n]));

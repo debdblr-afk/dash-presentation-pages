@@ -1,7 +1,6 @@
 import {loadDecks, saveDecks, createDeck, validateDeck, STORAGE_KEY} from './store.js';
 import {renderDashboard} from './dashboard.js';
 import {renderEditor} from './editor.js';
-
 import {loadOnline} from './online.js';
 
 const root = document.getElementById('app');
