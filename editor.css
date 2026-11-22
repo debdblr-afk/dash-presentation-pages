@@ -7,6 +7,13 @@
 @media(max-width:650px){.editor-header{height:66px;padding:0 12px;gap:11px}.editor-brand>span,.header-divider,.export-button span,.editor-header .btn-primary span{display:none}.editor-header-actions{gap:5px}.editor-header .btn{padding:0 10px}.editor-document{gap:5px}.deck-title{font-size:12px;max-width:190px}.save-state{font-size:8px}.editor-toolbar{height:50px;padding:0 8px;gap:3px}.toolbar-start{width:auto;gap:2px}.editing-label,.toolbar-divider,.toolbar-end>[data-action="help"]{display:none}.toolbar-tools{justify-content:center;gap:1px;margin:0}.editor-toolbar .btn{font-size:10px;gap:5px;padding:5px 8px}.mobile-path,.path-panel .panel-close{display:inline-flex!important}.path-panel{display:none;position:absolute;left:0;top:0;bottom:0;width:230px;box-shadow:12px 0 40px #17291e20;z-index:5}.path-open .path-panel{display:flex}.zoom-control{bottom:18px;right:50%;transform:translateX(50%)}.canvas-world{border-radius:0}.inspector-panel{width:260px}.present-top{left:14px!important;right:14px!important;top:14px!important}.present-top .btn{font-size:9px;padding:7px 9px;gap:5px;min-height:34px}.present-top kbd,.present-name{display:none}.present-controls{bottom:22px!important;gap:8px!important}.present-progress{min-width:75px;font-size:10px}.is-presenting .present-notes-toggle{bottom:90px;right:18px;font-size:10px}.present-notes{bottom:125px;right:18px}.canvas-empty{width:260px;padding:20px}.editor-dialog{padding:24px}.shortcuts-dialog dl>div{font-size:10px}}
 @media(prefers-reduced-motion:reduce){.canvas-world.animate-camera{transition:none}#toast{transition:none}}
 
+.online-dialog { max-width: min(540px, 94vw); max-height: 90vh; overflow: auto; }
+.online-dialog form { float: right; }
+.online-dialog p, .online-dialog label { display: block; margin: 1rem 0 .5rem; line-height: 1.45; }
+.online-dialog input, .online-dialog textarea { display: block; width: 100%; margin: .4rem 0; padding: .55rem; font: inherit; border: 1px solid #8ba29a; border-radius: 6px; }
+.online-dialog a:not([hidden]) { display: inline-block; }
+.online-loading { padding: 8vh 8vw; font-size: 18px; }
+
 /* Circular chapters and detail bubbles occupy square bounds on the zoom canvas. */
 .circle-theme .canvas-world { background:transparent; box-shadow:none }
 .circle-theme .canvas-viewport { background-color:#101f35; background-image:radial-gradient(#52677e .8px,transparent .8px) }
