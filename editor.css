@@ -19,7 +19,7 @@
 .circle-theme .topic p { font-size:3.6cqw; line-height:1.35; opacity:1; margin:auto; width:69%; max-width:none; -webkit-line-clamp:5 }
 .circle-theme .topic.subtopic { display:flex; flex-direction:column; justify-content:center; background:#e5f1ee; color:#162d40 }
 .circle-theme .topic.subtopic h2 { margin:0 auto 3%; font:600 8cqw/1.13 system-ui,sans-serif; width:75%; max-height:none }
-.circle-theme .topic.subtopic p { margin:0 auto; font-size:5.9cqw; line-height:1.3; width:74%; -webkit-line-clamp:6 }
+.circle-theme .topic.subtopic p { margin:0 auto; font-size:4.6cqw; line-height:1.3; width:78%; -webkit-line-clamp:7 }
 .circle-theme .overview-heading { max-width:1800px }
 .circle-theme .overview-heading p { opacity:1 }
 .circle-theme.is-presenting .present-top { background:#101f35e8; border-radius:10px; padding:6px 10px }
